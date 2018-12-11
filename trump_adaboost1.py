@@ -33,11 +33,11 @@ xTe = X[len(yTr):]
 
 # Using adaboost to classify
 from sklearn.ensemble import AdaBoostClassifier
-classifier = AdaBoostClassifier().fit(xTr[:800], yTr[:800])
-yTe = classifier.predict(xTr[800:])
+classifier = AdaBoostClassifier(n_estimators=60).fit(xTr, yTr)
+yTe = classifier.predict(xTe)
 
-with open('submission_adaboost123.csv', mode='w') as submission:
+with open('submission_adaboost1.csv', mode='w') as submission:
 	writer = csv.writer(submission)
 	writer.writerow(['ID', 'Label'])
-	for i in range(289):
-		writer.writerow([str(800+i), str(yTe[i])])
+	for i in range(300):
+		writer.writerow([str(i), str(yTe[i])])
